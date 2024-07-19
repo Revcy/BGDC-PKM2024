@@ -10,7 +10,7 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        //SceneManager.LoadScene("Tutorial");
+        SceneManager.LoadScene("Level 1");
         Debug.Log("Play Clicked");
     }
 
