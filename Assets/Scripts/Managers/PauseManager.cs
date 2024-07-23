@@ -3,22 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class MenuManager : MonoBehaviour
+public class PauseManager : MonoBehaviour
 {
     public GameObject optionsCanvas;
     public GameObject creditsCanvas;
-    public GameObject mainMenuCanvas;
+    public GameObject gameCanvas, pauseCanvas;
 
-    public void Play()
+    public void Resume()
     {
-        SceneManager.LoadScene("Level 1");
-        Debug.Log("Play Clicked");
+        gameCanvas.SetActive(true);
+        pauseCanvas.SetActive(false);
+        Debug.Log("Resume Clicked");
     }
-
     public void Options()
     {
         optionsCanvas.SetActive(true);
-        mainMenuCanvas.SetActive(false);
         Debug.Log("Options Clicked");
     }
 
@@ -28,9 +27,9 @@ public class MenuManager : MonoBehaviour
         Debug.Log("Credits Clicked");
     }
 
-    public void Exit()
+    public void MainMenu()
     {
-       //Application.Quit();
-       Debug.Log("Exit Clicked");
+        SceneManager.LoadScene("MainMenu");
+        Debug.Log("Main Menu Clicked");
     }
 }
