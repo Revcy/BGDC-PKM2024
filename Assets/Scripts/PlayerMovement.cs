@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     // private Animator anim;
 
     [SerializeField] private LayerMask jumpableGround;
+    [SerializeField] private LayerMask platformLayer;
     [SerializeField] private GameObject extinguisherPrefab;
     [SerializeField] private Transform shootPoint;
 
@@ -17,6 +18,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 6f;
     private bool hasExtinguisher = false;
+    private bool isPaused = false;
+
+    private GameObject carriedExtinguisher = null;
 
     private enum MovementState { idle, running, jumping, falling }
 
@@ -32,6 +36,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
+        if (isPaused) return;
+
         HandleMovement();
         HandleJump();
         HandleExtinguisher();
@@ -45,12 +51,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.S))
         {
-            // Code to go down a platform, e.g., disable platform collider
+            // Code to go down a platform
+            Collider2D platform = Physics2D.OverlapCircle(transform.position, 0.1f, platformLayer);
+            if (platform != null)
+            {
+                StartCoroutine(DisablePlatformCollider(platform));
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.W))
         {
-            // Code to go into wall door, e.g., interact with door
+            // Code to go into wall door
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
+            if (hit.collider != null && hit.collider.CompareTag("Door"))
+            {
+                // Implement door interaction logic
+                Debug.Log("Entered door");
+            }
         }
     }
 
@@ -72,14 +89,23 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            // Drop extinguisher
-            hasExtinguisher = false;
-        }
-
-        if (Input.GetMouseButtonDown(1) && IsOverExtinguisher())
-        {
-            // Swap extinguisher
-            hasExtinguisher = true;
+            if (hasExtinguisher)
+            {
+                // Drop extinguisher
+                DropExtinguisher();
+            }
+            else if (IsOverExtinguisher(out GameObject groundExtinguisher))
+            {
+                // Pickup or swap extinguisher
+                if (carriedExtinguisher != null)
+                {
+                    SwapExtinguisher(groundExtinguisher);
+                }
+                else
+                {
+                    PickupExtinguisher(groundExtinguisher);
+                }
+            }
         }
     }
 
@@ -87,13 +113,15 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (Time.timeScale == 1f)
+            if (isPaused)
             {
-                Time.timeScale = 0f;
+                Time.timeScale = 1f;
+                isPaused = false;
             }
             else
             {
-                Time.timeScale = 1f;
+                Time.timeScale = 0f;
+                isPaused = true;
             }
         }
     }
@@ -103,35 +131,56 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
-    private bool IsOverExtinguisher()
+    private bool IsOverExtinguisher(out GameObject extinguisher)
     {
-        // Check if the player is over an extinguisher on the ground
-        return false; // Implement this based on your game logic
+        Vector2 raycastOrigin = transform.position + new Vector3(1f, 0f, 0f); // Adjust as needed
+        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.left, 5f);
+        if (hit.collider != null)
+        {
+            Debug.Log("Raycast hit: " + hit.collider.name);
+            if (hit.collider.CompareTag("Extinguisher"))
+            {
+                extinguisher = hit.collider.gameObject;
+                Debug.Log("Passed " + extinguisher.name);
+                return true;
+            }
+        }
+        extinguisher = null;
+        return false;
     }
 
-    // private void UpdateAnimationState()
-    // {
-    //     MovementState state;
 
-    //     if(dirX > 0f){
-    //         state = MovementState.running;
-    //         sprite.flipX = false;
-    //     }
-    //     else if(dirX < 0f){
-    //         state = MovementState.running;
-    //         sprite.flipX = true;
-    //     }
-    //     else{
-    //         state = MovementState.idle;
-    //     }
+    private void PickupExtinguisher(GameObject extinguisher)
+    {
+        carriedExtinguisher = extinguisher;
+        carriedExtinguisher.SetActive(false);
+        hasExtinguisher = true;
+        Debug.Log("Picked up extinguisher");
+    }
 
-    //     if(rb.velocity.y > .1f){
-    //         state = MovementState.jumping;
-    //     }
-    //     else if(rb.velocity.y < -.1f){
-    //         state = MovementState.falling;
-    //     }
+    private void DropExtinguisher()
+    {
+        carriedExtinguisher.SetActive(true);
+        carriedExtinguisher.transform.position = transform.position;
+        carriedExtinguisher = null;
+        hasExtinguisher = false;
+        Debug.Log("Dropped extinguisher");
+    }
 
-    //     anim.SetInteger("state", (int)state);
-    // }
+    private void SwapExtinguisher(GameObject groundExtinguisher)
+    {
+        carriedExtinguisher.SetActive(true);
+        carriedExtinguisher.transform.position = groundExtinguisher.transform.position;
+        groundExtinguisher.SetActive(false);
+        carriedExtinguisher = groundExtinguisher;
+        Debug.Log("Swapped extinguisher");
+    }
+
+    private IEnumerator DisablePlatformCollider(Collider2D platform)
+    {
+        Collider2D platformCollider = platform.GetComponent<Collider2D>();
+        platformCollider.enabled = false;
+        yield return new WaitForSeconds(0.5f);
+        platformCollider.enabled = true;
+    }
 }
