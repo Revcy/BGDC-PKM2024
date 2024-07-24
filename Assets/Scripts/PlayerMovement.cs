@@ -41,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         HandleMovement();
         HandleJump();
         HandleExtinguisher();
-        HandlePause();
     }
 
     private void HandleMovement()
@@ -109,22 +108,6 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandlePause()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (isPaused)
-            {
-                Time.timeScale = 1f;
-                isPaused = false;
-            }
-            else
-            {
-                Time.timeScale = 0f;
-                isPaused = true;
-            }
-        }
-    }
 
     private bool IsGrounded()
     {
