@@ -85,12 +85,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetMouseButtonDown(1))
         {
-            if (hasExtinguisher)
-            {
-                // Drop extinguisher
-                DropExtinguisher();
-            }
-            else if (IsOverExtinguisher(out GameObject groundExtinguisher))
+            if (IsOverExtinguisher(out GameObject groundExtinguisher))
             {
                 // Pickup or swap extinguisher
                 if (carriedExtinguisher != null)
@@ -101,6 +96,11 @@ public class PlayerMovement : MonoBehaviour
                 {
                     PickupExtinguisher(groundExtinguisher);
                 }
+            }
+            else if (hasExtinguisher)
+            {
+                // Drop extinguisher
+                DropExtinguisher();
             }
         }
     }
