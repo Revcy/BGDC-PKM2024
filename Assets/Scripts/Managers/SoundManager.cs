@@ -19,6 +19,22 @@ public class SoundManager : MonoBehaviour
     public AudioClip movementSound;
     public AudioClip bgMusic;
 
+    public static SoundManager instance;  // Singleton instance
+
+    private void Awake()
+    {
+        // Singleton pattern to ensure only one instance of SoundManager exists
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         bgmSource.clip = bgMusic;

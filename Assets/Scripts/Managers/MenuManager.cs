@@ -8,10 +8,12 @@ public class MenuManager : MonoBehaviour
     public GameObject optionsCanvas;
     public GameObject creditsCanvas;
     public GameObject mainMenuCanvas;
+    public GameObject levelCanvas;
 
     public void Play()
     {
         SceneManager.LoadScene("Level 1");
+        levelCanvas.SetActive(true);
         Debug.Log("Play Clicked");
     }
 
