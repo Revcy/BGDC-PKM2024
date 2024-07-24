@@ -18,7 +18,6 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 6f;
     private bool hasExtinguisher = false;
-    private bool isPaused = false;
 
     private GameObject carriedExtinguisher = null;
 
@@ -36,8 +35,6 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if (isPaused) return;
-
         HandleMovement();
         HandleJump();
         HandleExtinguisher();
@@ -116,18 +113,47 @@ public class PlayerMovement : MonoBehaviour
 
     private bool IsOverExtinguisher(out GameObject extinguisher)
     {
-        Vector2 raycastOrigin = transform.position + new Vector3(1f, 0f, 0f); // Adjust as needed
-        RaycastHit2D hit = Physics2D.Raycast(raycastOrigin, Vector2.left, 5f);
-        if (hit.collider != null)
+        // Get the player's collider
+        Collider2D playerCollider = GetComponent<Collider2D>();
+
+        // Temporarily disable the player's collider
+        playerCollider.enabled = false;
+
+        // Define the raycast origins
+        Vector2 raycastOriginRight = transform.position + new Vector3(1f, 0f, 0f); // Adjust as needed
+        Vector2 raycastOriginLeft = transform.position + new Vector3(-1f, 0f, 0f); // Adjust as needed
+
+        // Perform the raycasts
+        RaycastHit2D hitFromRight = Physics2D.Raycast(raycastOriginRight, Vector2.left, 0.5f);
+        RaycastHit2D hitFromLeft = Physics2D.Raycast(raycastOriginLeft, Vector2.right, 0.5f);
+
+        // Re-enable the player's collider
+        playerCollider.enabled = true;
+
+        // Check if the raycast from the right hit an extinguisher
+        if (hitFromRight.collider != null)
         {
-            Debug.Log("Raycast hit: " + hit.collider.name);
-            if (hit.collider.CompareTag("Extinguisher"))
+            Debug.Log("Raycast hit from right: " + hitFromRight.collider.name);
+            if (hitFromRight.collider.CompareTag("Extinguisher"))
             {
-                extinguisher = hit.collider.gameObject;
+                extinguisher = hitFromRight.collider.gameObject;
                 Debug.Log("Passed " + extinguisher.name);
                 return true;
             }
         }
+
+        // Check if the raycast from the left hit an extinguisher
+        if (hitFromLeft.collider != null)
+        {
+            Debug.Log("Raycast hit from left: " + hitFromLeft.collider.name);
+            if (hitFromLeft.collider.CompareTag("Extinguisher"))
+            {
+                extinguisher = hitFromLeft.collider.gameObject;
+                Debug.Log("Passed " + extinguisher.name);
+                return true;
+            }
+        }
+
         extinguisher = null;
         return false;
     }
