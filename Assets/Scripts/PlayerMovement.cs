@@ -12,11 +12,14 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private LayerMask platformLayer;
     [SerializeField] private GameObject extinguisherPrefab;
+    [SerializeField] private GameObject replacementPrefab;
+    [SerializeField] private Transform holdPoint;
     [SerializeField] private Transform shootPoint;
 
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 6f;
+    [SerializeField] private float knockbackForce = 10f;
     private bool hasExtinguisher = false;
 
     private GameObject carriedExtinguisher = null;
@@ -105,6 +108,41 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.StartsWith("Fire")) // General fire type check using tags
+        {
+            FireClass fireClass = collision.gameObject.GetComponent<FireClass>();
+
+            if (fireClass != null && carriedExtinguisher != null)
+            {
+                string extinguisherName = carriedExtinguisher.name; // Assuming the extinguisher name is the same as its GameObject name
+                if (FireManager.CanExtinguish(fireClass.fireType, extinguisherName))
+                {
+                    fireClass.hp -= 10f; // Adjust the damage as needed
+                    if (fireClass.hp <= 0)
+                    {
+                        fireClass.Extinguish(); // Replace the burned prefab with the original
+                    }
+                }
+                else
+                {
+                    KnockbackPlayer(collision.transform);
+                }
+            }
+            else
+            {
+                Debug.LogError("FireClass component not found or carriedExtinguisher is null.");
+            }
+        }
+    }
+
+
+    private void KnockbackPlayer(Transform fireTransform)
+    {
+        Vector2 knockbackDirection = (transform.position - fireTransform.position).normalized;
+        GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+    }
 
     private bool IsGrounded()
     {
@@ -162,7 +200,9 @@ public class PlayerMovement : MonoBehaviour
     private void PickupExtinguisher(GameObject extinguisher)
     {
         carriedExtinguisher = extinguisher;
-        carriedExtinguisher.SetActive(false);
+        carriedExtinguisher.SetActive(true); // Make sure it's active
+        carriedExtinguisher.transform.position = holdPoint.position; // Set position to the holdPoint
+        carriedExtinguisher.transform.parent = holdPoint; // Parent it to the holdPoint
         hasExtinguisher = true;
         Debug.Log("Picked up extinguisher");
     }
@@ -170,7 +210,8 @@ public class PlayerMovement : MonoBehaviour
     private void DropExtinguisher()
     {
         carriedExtinguisher.SetActive(true);
-        carriedExtinguisher.transform.position = transform.position;
+        carriedExtinguisher.transform.parent = null; // Unparent the extinguisher
+        carriedExtinguisher.transform.position = transform.position; // Drop at player's position
         carriedExtinguisher = null;
         hasExtinguisher = false;
         Debug.Log("Dropped extinguisher");
@@ -179,9 +220,12 @@ public class PlayerMovement : MonoBehaviour
     private void SwapExtinguisher(GameObject groundExtinguisher)
     {
         carriedExtinguisher.SetActive(true);
-        carriedExtinguisher.transform.position = groundExtinguisher.transform.position;
+        carriedExtinguisher.transform.parent = null; // Unparent the current extinguisher
+        carriedExtinguisher.transform.position = groundExtinguisher.transform.position; // Position it
         groundExtinguisher.SetActive(false);
         carriedExtinguisher = groundExtinguisher;
+        carriedExtinguisher.transform.position = holdPoint.position; // Position new extinguisher at the holdPoint
+        carriedExtinguisher.transform.parent = holdPoint; // Parent the new extinguisher to holdPoint
         Debug.Log("Swapped extinguisher");
     }
 

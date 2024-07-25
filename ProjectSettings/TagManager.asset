@@ -5,7 +5,11 @@ TagManager:
   serializedVersion: 2
   tags:
   - Extinguisher
-  - Fire
+  - FireA
+  - FireB
+  - FireC
+  - FireD
+  - FireK
   layers:
   - Default
   - TransparentFX
