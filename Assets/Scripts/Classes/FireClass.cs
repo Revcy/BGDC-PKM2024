@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireClass : MonoBehaviour
 {
-    public string fireType; // Specify the detailed type of fire (e.g., "FireA1", "FireA2")
+    public string fireTag; // Specify the tag of the burning object
     public float hp = 100;
 
     // Reference to the original (unburned) prefab
