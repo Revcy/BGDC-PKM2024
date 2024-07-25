@@ -12,9 +12,19 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        SceneManager.LoadScene("Level 1");
         levelCanvas.SetActive(true);
         Debug.Log("Play Clicked");
+    }
+    public void PlayTutorial()
+    {
+        SceneManager.LoadScene("Tutorial");
+        Debug.Log("Tutorial Clicked");
+    }
+    public void PlayMain()
+    {
+        SceneManager.LoadScene("Level 1");
+        levelCanvas.SetActive(true);
+        Debug.Log("Main Clicked");
     }
 
     public void Options()
@@ -22,16 +32,25 @@ public class MenuManager : MonoBehaviour
         optionsCanvas.SetActive(true);
         Debug.Log("Options Clicked");
     }
-
+    public void OptionsClose()
+    {
+        optionsCanvas.SetActive(false);
+        Debug.Log("Options Closed");
+    }
     public void Credits()
     {
         creditsCanvas.SetActive(true);
         Debug.Log("Credits Clicked");
     }
 
+    public void CreditsClose()
+    {
+        creditsCanvas.SetActive(false);
+        Debug.Log("Credits Closed");
+    }
     public void Exit()
     {
-       //Application.Quit();
+       Application.Quit();
        Debug.Log("Exit Clicked");
     }
 }
