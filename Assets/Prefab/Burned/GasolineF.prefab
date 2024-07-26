@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7142534709657749009}
   - component: {fileID: 118373153815419043}
   - component: {fileID: 4309973849511756748}
+  - component: {fileID: 377566099869530928}
   m_Layer: 0
   m_Name: GasolineF
   m_TagString: FireB
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.42002344, y: -0.1400075}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 16.583836, y: 15.239783}
   m_EdgeRadius: 0
+--- !u!114 &377566099869530928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6026653889832735396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireB
+  hp: 100
+  originalPrefab: {fileID: 4589694676123774479, guid: 737aba752c300c4439180fd8e19f2030, type: 3}

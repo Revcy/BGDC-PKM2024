@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 5297299999920570438}
   - component: {fileID: 7811437643508774524}
   - component: {fileID: -8875141121374862291}
+  - component: {fileID: -6555440996259661969}
   m_Layer: 0
   m_Name: PaperF
-  m_TagString: Fire
+  m_TagString: FireA
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.13209009, y: -0.34343386}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.359725, y: 8.661208}
   m_EdgeRadius: 0
+--- !u!114 &-6555440996259661969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2619537394871203817}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireA
+  hp: 100
+  originalPrefab: {fileID: 7415681024835875787, guid: 33d873d01e8706f46a408cc33b7ff7b0, type: 3}

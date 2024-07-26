@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7219832227907610119}
   - component: {fileID: 171134318786871914}
   - component: {fileID: 8289129067204976384}
+  - component: {fileID: 8123385742470599963}
   m_Layer: 0
   m_Name: WetChem
   m_TagString: Extinguisher
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.9722285, y: 8.175381}
   m_EdgeRadius: 0
+--- !u!114 &8123385742470599963
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109035979060087265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4445b2da355264f912c1cd08d5c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPrefab: {fileID: 256070355844983662, guid: 6dd48b9cab83f224eac8fe458c228e8c, type: 3}

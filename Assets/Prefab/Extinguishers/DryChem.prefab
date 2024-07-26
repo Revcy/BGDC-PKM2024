@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6024077997129542904}
   - component: {fileID: 373446117564613711}
   - component: {fileID: 8155142853680124166}
+  - component: {fileID: -2406336132513702439}
   m_Layer: 0
   m_Name: DryChem
   m_TagString: Extinguisher
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.030494, y: 9.230976}
   m_EdgeRadius: 0
+--- !u!114 &-2406336132513702439
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7837079265669837941}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4445b2da355264f912c1cd08d5c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPrefab: {fileID: 5101741866122606683, guid: f0343f6f23d704b4e9b010266f274a47, type: 3}

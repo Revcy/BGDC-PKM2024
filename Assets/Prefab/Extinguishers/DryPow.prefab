@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8001845622947403004}
   - component: {fileID: 7096495862548368538}
   - component: {fileID: 3595723630917489275}
+  - component: {fileID: -5095328931675334083}
   m_Layer: 0
   m_Name: DryPow
   m_TagString: Extinguisher
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.152365, y: 9.016011}
   m_EdgeRadius: 0
+--- !u!114 &-5095328931675334083
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4382629121757146122}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4445b2da355264f912c1cd08d5c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPrefab: {fileID: 5101741866122606683, guid: f0343f6f23d704b4e9b010266f274a47, type: 3}

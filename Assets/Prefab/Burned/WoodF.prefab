@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6277321064242375124}
   - component: {fileID: 2937276806637491212}
   - component: {fileID: 4722104604605872178}
+  - component: {fileID: -2481510453763018335}
   m_Layer: 0
   m_Name: WoodF
   m_TagString: FireA
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.5630684, y: 2.124308}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 14.411289, y: 11.2888155}
   m_EdgeRadius: 0
+--- !u!114 &-2481510453763018335
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6874480560188287735}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireA
+  hp: 100
+  originalPrefab: {fileID: 2727907963351989988, guid: 7d61961303afc5740a5c347c33b19abd, type: 3}

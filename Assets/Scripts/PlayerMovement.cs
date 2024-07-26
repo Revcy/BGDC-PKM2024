@@ -15,14 +15,18 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject extinguisherPrefab;
     [SerializeField] private GameObject replacementPrefab;
     [SerializeField] private Transform holdPoint;
-    [SerializeField] private Transform shootPoint;
+    [SerializeField] private Transform sprayPoint;
+    [SerializeField] private GameObject sprayPrefab;
+    private Coroutine sprayCoroutine;
+    private GameObject currentSpray;
+    private SprayHandler currentSprayHandler;
 
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
     [SerializeField] private float jumpForce = 6f;
     [SerializeField] private float knockbackForce = 10f;
     private bool hasExtinguisher = false;
-
+    private bool facingRight = true;
     private GameObject carriedExtinguisher = null;
 
     private enum MovementState { idle, running, jumping, falling }
@@ -59,6 +63,15 @@ public class PlayerMovement : MonoBehaviour
             }
         }
 
+        if (dirX > 0 && !facingRight)
+        {
+            Flip();
+        }
+        else if (dirX < 0 && facingRight)
+        {
+            Flip();
+        }
+
         if (Input.GetKeyDown(KeyCode.W))
         {
             // Code to go into wall door
@@ -81,10 +94,13 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleExtinguisher()
     {
-        if (Input.GetMouseButtonDown(0) && hasExtinguisher)
+        if (Input.GetMouseButtonDown(0))
         {
-            // Shoot extinguisher
-            // Instantiate(extinguisherPrefab, shootPoint.position, Quaternion.identity);
+            StartShooting();
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            StopShooting();
         }
 
         if (Input.GetMouseButtonDown(1))
@@ -110,40 +126,112 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    // private void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.tag.StartsWith("Fire")) // General fire type check using tags
-    //     {
-    //         FireClass fireClass = collision.gameObject.GetComponent<FireClass>();
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag.StartsWith("Fire")) // General fire type check using tags
+        {
+            FireClass fireClass = collision.gameObject.GetComponent<FireClass>();
 
-    //         if (fireClass != null && carriedExtinguisher != null)
-    //         {
-    //             string extinguisherName = carriedExtinguisher.name; // Assuming the extinguisher name is the same as its GameObject name
-    //             if (FireManager.CanExtinguish(fireClass.fireType, extinguisherName))
-    //             {
-    //                 fireClass.hp -= 10f; // Adjust the damage as needed
-    //                 if (fireClass.hp <= 0)
-    //                 {
-    //                     fireClass.Extinguish(); // Replace the burned prefab with the original
-    //                 }
-    //             }
-    //             else
-    //             {
-    //                 KnockbackPlayer(collision.transform);
-    //             }
-    //         }
-    //         else
-    //         {
-    //             Debug.LogError("FireClass component not found or carriedExtinguisher is null.");
-    //         }
-    //     }
-    // }
+            if (fireClass != null && carriedExtinguisher != null)
+            {
+                string extinguisherName = carriedExtinguisher.name; // Assuming the extinguisher name is the same as its GameObject name
+                if (FireManager.CanExtinguish(fireClass.fireTag, extinguisherName))
+                {
+                    fireClass.hp -= 10f; // Adjust the damage as needed
+                    if (fireClass.hp <= 0)
+                    {
+                        fireClass.Extinguish(); // Replace the burned prefab with the original
+                    }
+                }
+                else
+                {
+                    KnockbackPlayer(collision.transform);
+                }
+            }
+            else
+            {
+                Debug.LogError("FireClass component not found or carriedExtinguisher is null.");
+            }
+        }
+    }
 
+    private void StartShooting()
+    {
+        if (sprayCoroutine == null && carriedExtinguisher != null)
+        {
+            sprayCoroutine = StartCoroutine(Shoot());
+        }
+    }
+
+    private void StopShooting()
+    {
+        if (sprayCoroutine != null)
+        {
+            StopCoroutine(sprayCoroutine);
+            sprayCoroutine = null;
+
+            // Destroy the current spray object
+            if (currentSpray != null)
+            {
+                Destroy(currentSpray);
+                currentSpray = null;
+            }
+        }
+    }
+
+    private IEnumerator Shoot()
+    {
+        while (true)
+        {
+            if (carriedExtinguisher != null)
+            {
+                ExtinguisherDetails extinguisherScript = carriedExtinguisher.GetComponent<ExtinguisherDetails>();
+                if (extinguisherScript != null)
+                {
+                    // If there is no current spray, instantiate a new one
+                    if (currentSpray == null)
+                    {
+                        currentSpray = Instantiate(extinguisherScript.sprayPrefab, sprayPoint.position, sprayPoint.rotation, sprayPoint);
+                        currentSprayHandler = currentSpray.GetComponent<SprayHandler>();
+                        if (currentSprayHandler != null)
+                        {
+                            currentSprayHandler.SetExtinguisherName(carriedExtinguisher.name);
+                        }
+                    }
+
+                    // Ensure the spray prefab is active
+                    currentSpray.SetActive(true);
+
+                    // Update the position of the spray to match the spray point
+                    currentSpray.transform.position = sprayPoint.position;
+                    currentSpray.transform.rotation = sprayPoint.rotation;
+
+                    // Debugging logs
+                    // Debug.Log("Spray instantiated: " + currentSpray.name);
+                    // Debug.Log("Parent of spray: " + currentSpray.transform.parent.name);
+                    // Debug.Log("Spray position: " + currentSpray.transform.position);
+                }
+                else
+                {
+                    Debug.LogError("ExtinguisherDetails script not found on carriedExtinguisher.");
+                }
+            }
+            else
+            {
+                Debug.LogError("No carriedExtinguisher found.");
+            }
+
+            yield return null; // Wait for the next frame
+        }
+    }
 
     private void KnockbackPlayer(Transform fireTransform)
     {
         Vector2 knockbackDirection = (transform.position - fireTransform.position).normalized;
-        GetComponent<Rigidbody2D>().AddForce(knockbackDirection * knockbackForce, ForceMode2D.Impulse);
+        rb.velocity = knockbackDirection * knockbackForce;
+
+        // Optional: Trigger knockback animation if you have an animator
+        // anim.SetTrigger("Knockback");
     }
 
     private bool IsGrounded()
@@ -245,12 +333,19 @@ public class PlayerMovement : MonoBehaviour
         Debug.Log("Swapped extinguisher");
     }
 
-
     private IEnumerator DisablePlatformCollider(Collider2D platform)
     {
         Collider2D platformCollider = platform.GetComponent<Collider2D>();
         platformCollider.enabled = false;
         yield return new WaitForSeconds(0.5f);
         platformCollider.enabled = true;
+    }
+
+    private void Flip()
+    {
+        // Switch the way the player is labelled as facing
+        facingRight = !facingRight;
+
+        transform.Rotate(0f, 180f, 0f);
     }
 }

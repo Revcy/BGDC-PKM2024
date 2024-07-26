@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2223567135517730943}
   - component: {fileID: 8270593708114321397}
   - component: {fileID: 3940883110979880310}
+  - component: {fileID: -2684625810567059468}
   m_Layer: 0
   m_Name: WBucket
   m_TagString: Extinguisher
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.018945, y: 16.824562}
   m_EdgeRadius: 0
+--- !u!114 &-2684625810567059468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 82667118843091061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4445b2da355264f912c1cd08d5c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPrefab: {fileID: 7333801199418957421, guid: dfc7f80e5dd45ec4c9bcf2f2fc63b564, type: 3}

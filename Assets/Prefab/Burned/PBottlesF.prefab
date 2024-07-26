@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2504013963745410472}
   - component: {fileID: 5188909513738499270}
   - component: {fileID: 5782281708473842113}
+  - component: {fileID: 9156545546292467341}
   m_Layer: 0
   m_Name: PBottlesF
   m_TagString: FireA
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.3048458, y: -0.11431694}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 12.279335, y: 11.13616}
   m_EdgeRadius: 0
+--- !u!114 &9156545546292467341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1699900202070116308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireA
+  hp: 100
+  originalPrefab: {fileID: 4778211383465492306, guid: 5a679c7ac7eab1a4689a85c37fe24051, type: 3}

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 9174723796991637396}
   - component: {fileID: 2431928488933645531}
   - component: {fileID: 8250363712294518974}
+  - component: {fileID: 4919645176345391169}
   m_Layer: 0
   m_Name: MListrikF
   m_TagString: FireC
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.8501525, y: 0.5863135}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 7.5115137, y: 13.316021}
   m_EdgeRadius: 0
+--- !u!114 &4919645176345391169
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 167874665719001271}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireC
+  hp: 100
+  originalPrefab: {fileID: 2320129306686771623, guid: 06f4324a6511e18448c8022598673d90, type: 3}

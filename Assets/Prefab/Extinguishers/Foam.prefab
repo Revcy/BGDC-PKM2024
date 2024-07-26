@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8292348558243586378}
   - component: {fileID: 3354507291295371028}
   - component: {fileID: 1721232900192301363}
+  - component: {fileID: -6508413952319193650}
   m_Layer: 0
   m_Name: Foam
   m_TagString: Extinguisher
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.0495787, y: 8.272066}
   m_EdgeRadius: 0
+--- !u!114 &-6508413952319193650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767397514230895461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e4445b2da355264f912c1cd08d5c92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sprayPrefab: {fileID: 5101741866122606683, guid: f0343f6f23d704b4e9b010266f274a47, type: 3}

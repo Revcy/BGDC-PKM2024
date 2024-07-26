@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3022818287482679173}
   - component: {fileID: 9074250193900523206}
   - component: {fileID: 5095746737069516797}
+  - component: {fileID: 7486982950056498362}
   m_Layer: 0
   m_Name: SikringF
   m_TagString: FireC
@@ -114,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.30769873, y: 0.23077393}
@@ -130,3 +131,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 10.66645, y: 11.333134}
   m_EdgeRadius: 0
+--- !u!114 &7486982950056498362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5563822032454048721}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f21c3e32f3eec14fb062647ee83f19a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireTag: FireC
+  hp: 100
+  originalPrefab: {fileID: 2609512885371807559, guid: 1f61f0a33f5e8714d8279c563add4590, type: 3}
