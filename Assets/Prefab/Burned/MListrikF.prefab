@@ -115,7 +115,7 @@ BoxCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.8501525, y: 0.5863135}
@@ -145,4 +145,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fireTag: FireC
   hp: 100
+  playerMovement: {fileID: 0}
   originalPrefab: {fileID: 2320129306686771623, guid: 06f4324a6511e18448c8022598673d90, type: 3}

@@ -13,7 +13,7 @@ public class Timer : MonoBehaviour
     public float timer = 300f;
     public void Start()
     {
-        timer = 200;
+        timer = 600;
     }
     public void Update()
     {
