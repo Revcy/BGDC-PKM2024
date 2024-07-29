@@ -9,8 +9,12 @@ public class Timer : MonoBehaviour
 
     public List<Image> spriteFieds; // set timer Fields
     public static GameState currentState;
-    public bool isStop;
+    public bool isStop = false;
     public float timer = 300f;
+    public void Start()
+    {
+        timer = 200;
+    }
     public void Update()
     {
         if (currentState == GameState.Paused) isStop = !isStop;
@@ -18,14 +22,23 @@ public class Timer : MonoBehaviour
         if (!isStop)
         {
             timer -= Time.deltaTime;
+            if (timer < 0)
+            {
+                timer = 0;
+                GameManager.instance.Death();
+            }
             SyncTimer();
         }
     }
+
     public void SyncTimer()
     {
+        int timeInt = Mathf.FloorToInt(timer);
+        string timeStr = timeInt.ToString().PadLeft(spriteFieds.Count, '0');
+
         for (var i = 0; i < spriteFieds.Count; i++)
         {
-            var index = (int)(timer / Mathf.Pow(10, i) % 10);
+            var index = timeStr[spriteFieds.Count - 1 - i] - '0';
             spriteFieds[i].sprite = spriteNumbers[index];
         }
     }
