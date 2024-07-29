@@ -44,15 +44,6 @@ public class SprayHandler : MonoBehaviour
                 {
                     Debug.Log("Go to else statement");
                     PlayerMovement playerMovement = FindObjectOfType<PlayerMovement>();
-                    if (playerMovement != null)
-                    {
-                        Debug.Log("About to knockback player");
-                        KnockbackPlayer(playerMovement.transform, collision.transform);
-                    }
-                    else
-                    {
-                        Debug.LogError("PlayerMovement script not found.");
-                    }
                 }
             }
         }

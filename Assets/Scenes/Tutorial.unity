@@ -4518,7 +4518,7 @@ MonoBehaviour:
   sprayPoint: {fileID: 1905837398}
   sprayPrefab: {fileID: 0}
   moveSpeed: 7
-  knockbackForce: 6
+  knockbackForce: 5
   knockbackDuration: 0
   knockbackTotalTime: 0.2
   jumpForce: 6

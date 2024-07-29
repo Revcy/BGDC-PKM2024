@@ -27,6 +27,8 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackForce;
     public float knockbackDuration;
     public float knockbackTotalTime;
+    private bool isKnockBack = false;
+    private bool grounded = false;
     [SerializeField] private float jumpForce = 6f;
     private bool hasExtinguisher = false;
     public bool knockFromRight;
@@ -47,52 +49,63 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(knockbackDuration <= 0)
+        if (knockbackDuration > 0)
         {
-            Debug.Log("Player can move");
-            HandleMovement();
+            Debug.Log(knockbackDuration);
+            isKnockBack = true;
+            HandleKnockBack();
         }
         else
         {
-            Debug.Log("Player is knockedback");
-            HandleKnockBack();
+            HandleMovement();
+            HandleJump();
+            HandleExtinguisher();
         }
-        HandleJump();
-        HandleExtinguisher();
     }
 
     private void HandleMovement()
     {
-        dirX = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
-
-        if (Input.GetKeyDown(KeyCode.S))
+        // Debug.Log(isKnockBack);
+        if(isKnockBack == false)
         {
-            // Code to go down a platform
-            Collider2D platform = Physics2D.OverlapCircle(transform.position, 0.1f, platformLayer);
-            if (platform != null)
+            dirX = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
+
+            if (Input.GetKeyDown(KeyCode.S))
             {
-                StartCoroutine(DisablePlatformCollider(platform));
+                // Code to go down a platform
+                Collider2D platform = Physics2D.OverlapCircle(transform.position, 0.1f, platformLayer);
+                if (platform != null)
+                {
+                    StartCoroutine(DisablePlatformCollider(platform));
+                }
+            }
+
+            if (dirX > 0 && !facingRight)
+            {
+                Flip();
+            }
+            else if (dirX < 0 && facingRight)
+            {
+                Flip();
+            }
+
+            if (Input.GetKeyDown(KeyCode.W))
+            {
+                // Code to go into wall door
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
+                if (hit.collider != null && hit.collider.CompareTag("Door"))
+                {
+                    // Implement door interaction logic
+                    Debug.Log("Entered door");
+                }
             }
         }
-
-        if (dirX > 0 && !facingRight)
-        {
-            Flip();
-        }
-        else if (dirX < 0 && facingRight)
-        {
-            Flip();
-        }
-
-        if (Input.GetKeyDown(KeyCode.W))
-        {
-            // Code to go into wall door
-            RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
-            if (hit.collider != null && hit.collider.CompareTag("Door"))
+        else{
+            grounded = IsGrounded();
+            if(grounded == true)
             {
-                // Implement door interaction logic
-                Debug.Log("Entered door");
+                isKnockBack = false;
             }
         }
     }
