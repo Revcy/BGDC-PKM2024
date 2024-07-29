@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -23,13 +24,16 @@ public class PlayerMovement : MonoBehaviour
 
     private float dirX = 0f;
     [SerializeField] private float moveSpeed = 7f;
+    public float knockbackForce;
+    public float knockbackDuration;
+    public float knockbackTotalTime;
     [SerializeField] private float jumpForce = 6f;
-    [SerializeField] private float knockbackForce = 10f;
     private bool hasExtinguisher = false;
+    public bool knockFromRight;
     private bool facingRight = true;
     private GameObject carriedExtinguisher = null;
 
-    private enum MovementState { idle, running, jumping, falling }
+    // private enum MovementState { idle, running, jumping, falling }
 
     // Start is called before the first frame update
     private void Start()
@@ -43,7 +47,16 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        HandleMovement();
+        if(knockbackDuration <= 0)
+        {
+            Debug.Log("Player can move");
+            HandleMovement();
+        }
+        else
+        {
+            Debug.Log("Player is knockedback");
+            HandleKnockBack();
+        }
         HandleJump();
         HandleExtinguisher();
     }
@@ -82,6 +95,19 @@ public class PlayerMovement : MonoBehaviour
                 Debug.Log("Entered door");
             }
         }
+    }
+
+    private void HandleKnockBack()
+    {
+        if(knockFromRight == true)
+        {
+            rb.velocity = new Vector2(-knockbackForce, knockbackForce);
+        }
+        else if(knockFromRight == false)
+        {
+            rb.velocity = new Vector2(knockbackForce, knockbackForce);
+        }
+        knockbackDuration -= Time.deltaTime;
     }
 
     private void HandleJump()
@@ -123,35 +149,6 @@ public class PlayerMovement : MonoBehaviour
                 DropExtinguisher();
             }
             
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.tag.StartsWith("Fire")) // General fire type check using tags
-        {
-            FireClass fireClass = collision.gameObject.GetComponent<FireClass>();
-
-            if (fireClass != null && carriedExtinguisher != null)
-            {
-                string extinguisherName = carriedExtinguisher.name; // Assuming the extinguisher name is the same as its GameObject name
-                if (FireManager.CanExtinguish(fireClass.fireTag, extinguisherName))
-                {
-                    fireClass.hp -= 10f; // Adjust the damage as needed
-                    if (fireClass.hp <= 0)
-                    {
-                        fireClass.Extinguish(); // Replace the burned prefab with the original
-                    }
-                }
-                else
-                {
-                    KnockbackPlayer(collision.transform);
-                }
-            }
-            else
-            {
-                Debug.LogError("FireClass component not found or carriedExtinguisher is null.");
-            }
         }
     }
 
@@ -223,15 +220,6 @@ public class PlayerMovement : MonoBehaviour
 
             yield return null; // Wait for the next frame
         }
-    }
-
-    private void KnockbackPlayer(Transform fireTransform)
-    {
-        Vector2 knockbackDirection = (transform.position - fireTransform.position).normalized;
-        rb.velocity = knockbackDirection * knockbackForce;
-
-        // Optional: Trigger knockback animation if you have an animator
-        // anim.SetTrigger("Knockback");
     }
 
     private bool IsGrounded()
