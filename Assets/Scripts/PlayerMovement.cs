@@ -9,7 +9,7 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D coll;
     private SpriteRenderer sprite;
-    // private Animator anim;
+    private Animator anim;
 
     [SerializeField] private LayerMask jumpableGround;
     [SerializeField] private LayerMask platformLayer;
@@ -28,14 +28,14 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDuration;
     public float knockbackTotalTime;
     private bool isKnockBack = false;
+    private bool isShooting = false;
     private bool grounded = false;
     [SerializeField] private float jumpForce = 6f;
     private bool hasExtinguisher = false;
     public bool knockFromRight;
     private bool facingRight = true;
     private GameObject carriedExtinguisher = null;
-
-    // private enum MovementState { idle, running, jumping, falling }
+    private enum MovementState { idle, walking, jumping, knockback }
 
     // Start is called before the first frame update
     private void Start()
@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<BoxCollider2D>();
         sprite = GetComponent<SpriteRenderer>();
-        // anim = GetComponent<Animator>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -54,13 +54,39 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log(knockbackDuration);
             isKnockBack = true;
             HandleKnockBack();
+            UpdateAnimationState();
         }
         else
         {
             HandleMovement();
             HandleJump();
             HandleExtinguisher();
+            UpdateAnimationState();
         }
+    }
+
+    private void UpdateAnimationState()
+    {
+        MovementState state;
+
+        if(dirX > 0f || dirX < 0f)
+        {
+            state = MovementState.walking;
+        }
+        else
+        {
+           state = MovementState.idle;
+        }
+
+        if(isKnockBack == true)
+        {
+            state = MovementState.knockback;
+        }
+        else if(rb.velocity.y >= .1f || rb.velocity.y <= -.1f){
+            state = MovementState.jumping;
+        }
+
+        anim.SetInteger("state", (int)state);
     }
 
     private void HandleMovement()
@@ -127,10 +153,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
+            isShooting = true;
             StartShooting();
         }
         if (Input.GetMouseButtonUp(0))
         {
+            isShooting = false;
             StopShooting();
         }
 
