@@ -35,7 +35,7 @@ public class PlayerMovement : MonoBehaviour
     public bool knockFromRight;
     private bool facingRight = true;
     private GameObject carriedExtinguisher = null;
-    private enum MovementState { idle, walking, jumping, knockback }
+    private enum MovementState { idle, walking, jumping, knockback, spraying }
 
     // Start is called before the first frame update
     private void Start()
@@ -84,6 +84,11 @@ public class PlayerMovement : MonoBehaviour
         }
         else if(rb.velocity.y >= .1f || rb.velocity.y <= -.1f){
             state = MovementState.jumping;
+        }
+
+        if(isShooting == true && isKnockBack == false)
+        {
+            state = MovementState.spraying;
         }
 
         anim.SetInteger("state", (int)state);
@@ -143,9 +148,12 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        if(isShooting == false)
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            {
+                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+            }
         }
     }
 
@@ -187,7 +195,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void StartShooting()
     {
-        if (sprayCoroutine == null && carriedExtinguisher != null)
+        grounded = IsGrounded();
+        if (sprayCoroutine == null && carriedExtinguisher != null && grounded == true)
         {
             sprayCoroutine = StartCoroutine(Shoot());
         }
