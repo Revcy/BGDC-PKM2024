@@ -89,17 +89,6 @@ public class PlayerMovement : MonoBehaviour
             {
                 Flip();
             }
-
-            if (Input.GetKeyDown(KeyCode.W))
-            {
-                // Code to go into wall door
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
-                if (hit.collider != null && hit.collider.CompareTag("Door"))
-                {
-                    // Implement door interaction logic
-                    Debug.Log("Entered door");
-                }
-            }
         }
         else{
             grounded = IsGrounded();
@@ -110,14 +99,17 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void HandleKnockBack()
+    public void HandleKnockBack()
     {
+        isKnockBack = true;
         if(knockFromRight == true)
         {
+            Debug.Log(rb.velocity);
             rb.velocity = new Vector2(-knockbackForce, knockbackForce);
         }
         else if(knockFromRight == false)
         {
+            Debug.Log(rb.velocity);
             rb.velocity = new Vector2(knockbackForce, knockbackForce);
         }
         knockbackDuration -= Time.deltaTime;

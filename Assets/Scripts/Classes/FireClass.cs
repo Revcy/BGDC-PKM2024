@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 
 public class FireClass : MonoBehaviour
@@ -13,7 +14,7 @@ public class FireClass : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.tag == "Player" || collision.gameObject.name == "DrySpray" || collision.gameObject.name == "WaterSplash" || collision.gameObject.name == "WetSpray")
         {
             playerMovement.knockbackDuration = playerMovement.knockbackTotalTime;
             if(collision.transform.position.x <= transform.position.x)
@@ -25,6 +26,7 @@ public class FireClass : MonoBehaviour
                 playerMovement.knockFromRight = false;
             }
         }
+
     }
 
     public void Extinguish()

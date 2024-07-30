@@ -10,6 +10,7 @@ TagManager:
   - FireC
   - FireD
   - FireK
+  - Door
   layers:
   - Default
   - TransparentFX
