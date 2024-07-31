@@ -30,11 +30,13 @@ public class MenuManager : MonoBehaviour
     public void Options()
     {
         optionsCanvas.SetActive(true);
+        mainMenuCanvas.SetActive(false);
         Debug.Log("Options Clicked");
     }
     public void OptionsClose()
     {
         optionsCanvas.SetActive(false);
+        mainMenuCanvas.SetActive(true);
         Debug.Log("Options Closed");
     }
     public void Credits()

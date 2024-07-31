@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3354507291295371028}
   - component: {fileID: 1721232900192301363}
   - component: {fileID: -6508413952319193650}
+  - component: {fileID: 6615580000163249079}
   m_Layer: 0
   m_Name: Foam
   m_TagString: Extinguisher
@@ -144,3 +145,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprayPrefab: {fileID: 5101741866122606683, guid: f0343f6f23d704b4e9b010266f274a47, type: 3}
+  extinguisherPrefab: {fileID: 0}
+--- !u!95 &6615580000163249079
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767397514230895461}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1dd83f842b4e71441a1a7a60ca6586be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

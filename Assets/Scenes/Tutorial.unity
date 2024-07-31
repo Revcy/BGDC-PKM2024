@@ -1093,7 +1093,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 0}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -1304,6 +1305,8 @@ MonoBehaviour:
   creditsCanvas: {fileID: 2025732821}
   gameCanvas: {fileID: 1056513257}
   pauseCanvas: {fileID: 1757576305}
+  pauseButton: {fileID: 0}
+  resumeButton: {fileID: 0}
 --- !u!1 &547687961
 GameObject:
   m_ObjectHideFlags: 0
@@ -4408,6 +4411,8 @@ MonoBehaviour:
   fireSound: {fileID: 0}
   movementSound: {fileID: 0}
   bgMusic: {fileID: 8300000, guid: 2163a73e9e17303489043f9f8d240f39, type: 3}
+  winSFX: {fileID: 0}
+  loseSFX: {fileID: 0}
 --- !u!4 &2040947685
 Transform:
   m_ObjectHideFlags: 0
@@ -4549,6 +4554,13 @@ MonoBehaviour:
   knockbackTotalTime: 0.2
   jumpForce: 6
   knockFromRight: 0
+  FoamUI: {fileID: 0}
+  CO2UI: {fileID: 0}
+  DryChemUI: {fileID: 0}
+  WaterUI: {fileID: 0}
+  WetChemUI: {fileID: 0}
+  DryPowUI: {fileID: 0}
+  soundManager: {fileID: 0}
 --- !u!50 &2118754855
 Rigidbody2D:
   serializedVersion: 4

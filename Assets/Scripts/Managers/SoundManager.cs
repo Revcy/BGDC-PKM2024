@@ -8,8 +8,8 @@ using UnityEngine.UI;
 public class SoundManager : MonoBehaviour
 {
     [Header("Audio Source")]
-    [SerializeField] AudioSource bgmSource;
-    [SerializeField] AudioSource sfxSource;
+    [SerializeField] public AudioSource bgmSource;
+    [SerializeField] public AudioSource sfxSource;
     [Header("Audio Asset")]
     public AudioClip doorOpen;
     public AudioClip buttonClick;
@@ -18,22 +18,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip fireSound;
     public AudioClip movementSound;
     public AudioClip bgMusic;
-
-    public static SoundManager instance;  // Singleton instance
-
-    private void Awake()
-    {
-        // Singleton pattern to ensure only one instance of SoundManager exists
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
+    public AudioClip winSFX;
+    public AudioClip loseSFX;
 
     private void Start()
     {
@@ -45,5 +31,28 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(AudioClip clip)
     {
         sfxSource.PlayOneShot(clip);
+    }
+
+    public void PlaySFXLoop(AudioClip clip)
+    {
+        if (sfxSource.clip != clip)
+        {
+            sfxSource.clip = clip;
+            sfxSource.loop = true;
+            sfxSource.Play();
+        }
+        else if (!sfxSource.isPlaying)
+        {
+            sfxSource.Play();
+        }
+    }
+
+    public void StopSFXLoop()
+    {
+        if (sfxSource.isPlaying)
+        {
+            sfxSource.Stop();
+            sfxSource.clip = null;
+        }
     }
 }

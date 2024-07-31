@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 171134318786871914}
   - component: {fileID: 8289129067204976384}
   - component: {fileID: 8123385742470599963}
+  - component: {fileID: -3047887453404377027}
   m_Layer: 0
   m_Name: WetChem
   m_TagString: Extinguisher
@@ -144,3 +145,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprayPrefab: {fileID: 256070355844983662, guid: 6dd48b9cab83f224eac8fe458c228e8c, type: 3}
+  extinguisherPrefab: {fileID: 0}
+--- !u!95 &-3047887453404377027
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109035979060087265}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 73c786e8816d51b4a92b8c4416e11ede, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

@@ -37,6 +37,12 @@ public class PlayerMovement : MonoBehaviour
     private GameObject carriedExtinguisher = null;
     private enum MovementState { idle, walking, jumping, knockback, spraying }
     public GameObject FoamUI, CO2UI, DryChemUI, WaterUI, WetChemUI, DryPowUI;
+    public SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
 
     // Start is called before the first frame update
     private void Start()
@@ -73,10 +79,18 @@ public class PlayerMovement : MonoBehaviour
         if (dirX > 0f || dirX < 0f)
         {
             state = MovementState.walking;
+            if (soundManager.sfxSource.clip != soundManager.movementSound || !soundManager.sfxSource.isPlaying)
+            {
+                soundManager.PlaySFXLoop(soundManager.movementSound);
+            }
         }
         else
         {
             state = MovementState.idle;
+            if (soundManager.sfxSource.clip == soundManager.movementSound)
+            {
+                soundManager.StopSFXLoop();
+            }
         }
 
         if (isKnockBack == true)
@@ -126,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             grounded = IsGrounded();
-            if (grounded == true)
+            if (grounded == true || IsPlatform() == true)
             {
                 isKnockBack = false;
             }
