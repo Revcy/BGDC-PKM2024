@@ -12,7 +12,9 @@ public class MenuManager : MonoBehaviour
 
     public void Play()
     {
-        levelCanvas.SetActive(true);
+        //levelCanvas.SetActive(true);
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("Level 1");
         Debug.Log("Play Clicked");
     }
     public void PlayTutorial()

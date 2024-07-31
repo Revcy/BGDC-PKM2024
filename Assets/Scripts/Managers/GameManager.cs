@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public static GameState currentState;
     public float backToMenuDelay;
     public bool isJournaling = false;
-
+    public GameObject LoseScreen;
     public static event Action OnBackToMenu;
 
     private void Awake()
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
         currentState = GameState.Dead;
         Debug.Log("Player ran out of time");
         //SoundManager.instance.PlaySoundEffect(SFXindex);
-        //DeathScreen.instance.SetDeathTrue(true);
+        LoseScreen.SetActive(true);
     }
 
     [ContextMenu("Remove All Player Prefs")]

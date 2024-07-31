@@ -10,10 +10,10 @@ public class Timer : MonoBehaviour
     public List<Image> spriteFieds; // set timer Fields
     public static GameState currentState;
     public bool isStop = false;
-    public float timer = 300f;
+    public float timer;
     public void Start()
     {
-        timer = 600;
+        timer = 900;
     }
     public void Update()
     {

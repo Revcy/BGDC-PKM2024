@@ -5,11 +5,21 @@ using UnityEngine;
 public class PlayerTeleport : MonoBehaviour
 {
     private GameObject currentTeleporter;
+    public GameObject WinCanvas;
+    private bool isWin = false;
+    private void Start()
+    {
+        WinCanvas = DontDestroyWin.instance.gameObject;
+    }
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.W))
         {
-            if(currentTeleporter != null)
+            if (isWin == true)
+            {
+                WinCanvas.SetActive(true);
+            }
+            if (currentTeleporter != null)
             {
                 transform.position = currentTeleporter.GetComponent<RoomDoor>().GetDestination().position;
             }
@@ -22,6 +32,9 @@ public class PlayerTeleport : MonoBehaviour
         {
             currentTeleporter = collision.gameObject;
         }
+        else if (collision.CompareTag("WinDoor")){
+            isWin = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -31,6 +44,7 @@ public class PlayerTeleport : MonoBehaviour
             if(collision.gameObject == currentTeleporter)
             {
                 currentTeleporter = null;
+                isWin = false;
             }
         }
     }

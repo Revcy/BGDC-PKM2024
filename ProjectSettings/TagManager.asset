@@ -12,6 +12,7 @@ TagManager:
   - FireK
   - Door
   - Audio
+  - WinDoor
   layers:
   - Default
   - TransparentFX
