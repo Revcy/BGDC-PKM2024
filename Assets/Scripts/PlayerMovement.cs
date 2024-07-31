@@ -70,24 +70,25 @@ public class PlayerMovement : MonoBehaviour
     {
         MovementState state;
 
-        if(dirX > 0f || dirX < 0f)
+        if (dirX > 0f || dirX < 0f)
         {
             state = MovementState.walking;
         }
         else
         {
-           state = MovementState.idle;
+            state = MovementState.idle;
         }
 
-        if(isKnockBack == true)
+        if (isKnockBack == true)
         {
             state = MovementState.knockback;
         }
-        else if(rb.velocity.y >= .1f || rb.velocity.y <= -.1f){
+        else if (rb.velocity.y >= .1f || rb.velocity.y <= -.1f)
+        {
             state = MovementState.jumping;
         }
 
-        if(isShooting == true && isKnockBack == false)
+        if (isShooting == true && isKnockBack == false)
         {
             state = MovementState.spraying;
         }
@@ -98,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
     private void HandleMovement()
     {
         // Debug.Log(isKnockBack);
-        if(isKnockBack == false)
+        if (isKnockBack == false)
         {
             dirX = Input.GetAxis("Horizontal");
             rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
@@ -122,9 +123,10 @@ public class PlayerMovement : MonoBehaviour
                 Flip();
             }
         }
-        else{
+        else
+        {
             grounded = IsGrounded();
-            if(grounded == true)
+            if (grounded == true)
             {
                 isKnockBack = false;
             }
@@ -134,12 +136,12 @@ public class PlayerMovement : MonoBehaviour
     public void HandleKnockBack()
     {
         isKnockBack = true;
-        if(knockFromRight == true)
+        if (knockFromRight == true)
         {
             Debug.Log(rb.velocity);
             rb.velocity = new Vector2(-knockbackForce, knockbackForce);
         }
-        else if(knockFromRight == false)
+        else if (knockFromRight == false)
         {
             Debug.Log(rb.velocity);
             rb.velocity = new Vector2(knockbackForce, knockbackForce);
@@ -149,7 +151,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()
     {
-        if(isShooting == false)
+        if (isShooting == false)
         {
             if (Input.GetKeyDown(KeyCode.Space) && (IsGrounded() || IsPlatform()))
             {
@@ -190,18 +192,14 @@ public class PlayerMovement : MonoBehaviour
                 // Drop extinguisher
                 DropExtinguisher();
             }
-            
+
         }
     }
 
     private void StartShooting()
     {
         grounded = IsGrounded();
-<<<<<<< Updated upstream
         if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true || IsPlatform() == true))
-=======
-        if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true|| IsPlatform() == true))
->>>>>>> Stashed changes
         {
             sprayCoroutine = StartCoroutine(Shoot());
         }
@@ -338,7 +336,7 @@ public class PlayerMovement : MonoBehaviour
         carriedExtinguisher.SetActive(true); // Make sure it's active
         carriedExtinguisher.transform.position = holdPoint.position; // Set position to the holdPoint
         carriedExtinguisher.transform.parent = holdPoint; // Parent it to the holdPoint
-        if(carriedExtinguisher.name == "Foam")
+        if (carriedExtinguisher.name == "Foam")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -347,7 +345,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(true);
         }
-        else if(carriedExtinguisher.name == "WBucket")
+        else if (carriedExtinguisher.name == "WBucket")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -356,7 +354,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(true);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "WetChem")
+        else if (carriedExtinguisher.name == "WetChem")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -365,7 +363,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "DryChem")
+        else if (carriedExtinguisher.name == "DryChem")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -374,7 +372,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "DryPow")
+        else if (carriedExtinguisher.name == "DryPow")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(true);
@@ -383,7 +381,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "CO2")
+        else if (carriedExtinguisher.name == "CO2")
         {
             CO2UI.SetActive(true);
             DryPowUI.SetActive(false);
@@ -430,7 +428,7 @@ public class PlayerMovement : MonoBehaviour
         carriedExtinguisher.transform.parent = holdPoint; // Parent the new extinguisher to holdPoint
         carriedExtinguisher.SetActive(true); // Ensure it is active in the scene
 
-        if(carriedExtinguisher.name == "Foam")
+        if (carriedExtinguisher.name == "Foam")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -439,7 +437,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(true);
         }
-        else if(carriedExtinguisher.name == "WBucket")
+        else if (carriedExtinguisher.name == "WBucket")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -448,7 +446,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(true);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "WetChem")
+        else if (carriedExtinguisher.name == "WetChem")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -457,7 +455,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "DryChem")
+        else if (carriedExtinguisher.name == "DryChem")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(false);
@@ -466,7 +464,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "DryPow")
+        else if (carriedExtinguisher.name == "DryPow")
         {
             CO2UI.SetActive(false);
             DryPowUI.SetActive(true);
@@ -475,7 +473,7 @@ public class PlayerMovement : MonoBehaviour
             WaterUI.SetActive(false);
             FoamUI.SetActive(false);
         }
-        else if(carriedExtinguisher.name == "CO2")
+        else if (carriedExtinguisher.name == "CO2")
         {
             CO2UI.SetActive(true);
             DryPowUI.SetActive(false);

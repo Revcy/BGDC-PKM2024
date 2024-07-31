@@ -4775,39 +4775,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 89651365}
     m_Modifications:
-<<<<<<< Updated upstream
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: CO2UI
-      value: 
-      objectReference: {fileID: 1274567036}
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: FoamUI
-      value: 
-      objectReference: {fileID: 1136755704}
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: WaterUI
-      value: 
-      objectReference: {fileID: 427045764}
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: DryPowUI
-      value: 
-      objectReference: {fileID: 940340302}
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: DryChemUI
-      value: 
-      objectReference: {fileID: 6068440}
-    - target: {fileID: 840289649922999556, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-      propertyPath: WetChemUI
-      value: 
-      objectReference: {fileID: 316352129}
-    - target: {fileID: 8236847617650641483, guid: 52186519b8922504984411fff06a9fa3, type: 3}
-=======
     - target: {fileID: 317583582422862462, guid: 0d643a3bc06df0544a9934a1ba7bb9f3, type: 3}
       propertyPath: m_Name
       value: Ceiling (13)
       objectReference: {fileID: 0}
     - target: {fileID: 6541771601436963438, guid: 0d643a3bc06df0544a9934a1ba7bb9f3, type: 3}
->>>>>>> Stashed changes
       propertyPath: m_LocalPosition.x
       value: -2.0499992
       objectReference: {fileID: 0}
