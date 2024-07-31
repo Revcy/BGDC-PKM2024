@@ -197,7 +197,11 @@ public class PlayerMovement : MonoBehaviour
     private void StartShooting()
     {
         grounded = IsGrounded();
+<<<<<<< Updated upstream
         if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true || IsPlatform() == true))
+=======
+        if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true|| IsPlatform() == true))
+>>>>>>> Stashed changes
         {
             sprayCoroutine = StartCoroutine(Shoot());
         }
