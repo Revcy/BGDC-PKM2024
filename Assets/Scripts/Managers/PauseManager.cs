@@ -38,6 +38,8 @@ public class PauseManager : MonoBehaviour
     {
         GameManager.instance.Resume();
         pauseCanvas.SetActive(false);
+        creditsCanvas.SetActive(false);
+        optionsCanvas.SetActive(false);
         pauseButton.SetActive(true);
         resumeButton.SetActive(false);
         Debug.Log("Resume Clicked");
