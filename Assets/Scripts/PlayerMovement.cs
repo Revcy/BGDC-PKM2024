@@ -36,6 +36,7 @@ public class PlayerMovement : MonoBehaviour
     private bool facingRight = true;
     private GameObject carriedExtinguisher = null;
     private enum MovementState { idle, walking, jumping, knockback, spraying }
+    public GameObject FoamUI, CO2UI, DryChemUI, WaterUI, WetChemUI, DryPowUI;
 
     // Start is called before the first frame update
     private void Start()
@@ -196,7 +197,7 @@ public class PlayerMovement : MonoBehaviour
     private void StartShooting()
     {
         grounded = IsGrounded();
-        if (sprayCoroutine == null && carriedExtinguisher != null && grounded == true)
+        if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true || IsPlatform() == true))
         {
             sprayCoroutine = StartCoroutine(Shoot());
         }
@@ -333,6 +334,60 @@ public class PlayerMovement : MonoBehaviour
         carriedExtinguisher.SetActive(true); // Make sure it's active
         carriedExtinguisher.transform.position = holdPoint.position; // Set position to the holdPoint
         carriedExtinguisher.transform.parent = holdPoint; // Parent it to the holdPoint
+        if(carriedExtinguisher.name == "Foam")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(true);
+        }
+        else if(carriedExtinguisher.name == "WBucket")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(true);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "WetChem")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(true);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "DryChem")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(true);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "DryPow")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(true);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "CO2")
+        {
+            CO2UI.SetActive(true);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
         hasExtinguisher = true;
         Debug.Log("Picked up extinguisher");
     }
@@ -344,6 +399,12 @@ public class PlayerMovement : MonoBehaviour
         carriedExtinguisher.transform.position = transform.position; // Drop at player's position
         carriedExtinguisher = null;
         hasExtinguisher = false;
+        CO2UI.SetActive(false);
+        DryPowUI.SetActive(false);
+        DryChemUI.SetActive(false);
+        WetChemUI.SetActive(false);
+        WaterUI.SetActive(false);
+        FoamUI.SetActive(false);
         Debug.Log("Dropped extinguisher");
     }
 
@@ -365,6 +426,60 @@ public class PlayerMovement : MonoBehaviour
         carriedExtinguisher.transform.parent = holdPoint; // Parent the new extinguisher to holdPoint
         carriedExtinguisher.SetActive(true); // Ensure it is active in the scene
 
+        if(carriedExtinguisher.name == "Foam")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(true);
+        }
+        else if(carriedExtinguisher.name == "WBucket")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(true);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "WetChem")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(true);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "DryChem")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(true);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "DryPow")
+        {
+            CO2UI.SetActive(false);
+            DryPowUI.SetActive(true);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
+        else if(carriedExtinguisher.name == "CO2")
+        {
+            CO2UI.SetActive(true);
+            DryPowUI.SetActive(false);
+            DryChemUI.SetActive(false);
+            WetChemUI.SetActive(false);
+            WaterUI.SetActive(false);
+            FoamUI.SetActive(false);
+        }
         Debug.Log("Swapped extinguisher");
     }
 
