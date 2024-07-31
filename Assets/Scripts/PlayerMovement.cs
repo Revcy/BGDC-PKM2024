@@ -105,10 +105,10 @@ public class PlayerMovement : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.S))
             {
                 // Code to go down a platform
-                Collider2D platform = Physics2D.OverlapCircle(transform.position, 0.1f, platformLayer);
-                if (platform != null)
+                RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, platformLayer);
+                if (hit.collider != null)
                 {
-                    StartCoroutine(DisablePlatformCollider(platform));
+                    StartCoroutine(DisablePlatformCollider(hit.collider));
                 }
             }
 
@@ -150,7 +150,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if(isShooting == false)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            if (Input.GetKeyDown(KeyCode.Space) && (IsGrounded() || IsPlatform()))
             {
                 rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             }
@@ -269,6 +269,11 @@ public class PlayerMovement : MonoBehaviour
         return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, jumpableGround);
     }
 
+    private bool IsPlatform()
+    {
+        return Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, platformLayer);
+    }
+
     private bool IsOverExtinguisher(out GameObject extinguisher)
     {
         // Get the player's collider
@@ -367,7 +372,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Collider2D platformCollider = platform.GetComponent<Collider2D>();
         platformCollider.enabled = false;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1f);
         platformCollider.enabled = true;
     }
 
