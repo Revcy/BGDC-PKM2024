@@ -18,8 +18,8 @@ public class PressPlate : MonoBehaviour
         if (objectsInside.Count > 0 && gate != null)
         {
             gate.SetActive(false);
-
-            Debug.Log("Gate Closed");
+            GetComponent<SpriteRenderer>().sprite = Pressed;
+            Debug.Log("Gate Opened");
         }
     }
 
@@ -34,7 +34,8 @@ public class PressPlate : MonoBehaviour
         if (objectsInside.Count == 0 && gate != null)
         {
             gate.SetActive(true);
-            Debug.Log("Gate Opened");
+            GetComponent<SpriteRenderer>().sprite = Free;
+            Debug.Log("Gate Closed");
         }
     }
 }

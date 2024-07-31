@@ -8,9 +8,11 @@ public class PauseManager : MonoBehaviour
     public GameObject optionsCanvas;
     public GameObject creditsCanvas;
     public GameObject gameCanvas, pauseCanvas;
-
+    public GameObject pauseButton;
+    public GameObject resumeButton;
     public void Resume()
     {
+        GameManager.instance.Resume();
         gameCanvas.SetActive(true);
         pauseCanvas.SetActive(false);
         Debug.Log("Resume Clicked");
@@ -31,5 +33,21 @@ public class PauseManager : MonoBehaviour
     {
         SceneManager.LoadScene("MainMenu");
         Debug.Log("Main Menu Clicked");
+    }
+    public void IngameResume()
+    {
+        GameManager.instance.Resume();
+        pauseCanvas.SetActive(false);
+        pauseButton.SetActive(true);
+        resumeButton.SetActive(false);
+        Debug.Log("Resume Clicked");
+    }
+    public void IngamePause()
+    {
+        GameManager.instance.Pause();
+        pauseCanvas.SetActive(true);
+        pauseButton.SetActive(false);
+        resumeButton.SetActive(true);
+        Debug.Log("Pause Clicked");
     }
 }

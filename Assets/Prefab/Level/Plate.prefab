@@ -144,3 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gate: {fileID: 0}
+  Free: {fileID: 21300000, guid: f1179a5b9b3a9e549bf4910770ed4bdb, type: 3}
+  Pressed: {fileID: 21300000, guid: 4f145df509db53641a3cec5ade5e3259, type: 3}
