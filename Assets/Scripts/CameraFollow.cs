@@ -6,9 +6,10 @@ public class CameraFollow : MonoBehaviour
 {
     public Transform target;
     public int distance = -10;
+    public float offset = 1.0f;
 
     void Update()
     {
-        this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y, distance);
+        this.transform.position = new Vector3(target.transform.position.x, target.transform.position.y + offset, distance);
     }
 }
