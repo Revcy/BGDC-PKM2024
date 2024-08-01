@@ -10,6 +10,8 @@ public class PauseManager : MonoBehaviour
     public GameObject gameCanvas, pauseCanvas;
     public GameObject pauseButton;
     public GameObject resumeButton;
+    public GameObject journalCanvas;
+    public bool isJournalActive = false;
     public void Resume()
     {
         GameManager.instance.Resume();
@@ -51,5 +53,19 @@ public class PauseManager : MonoBehaviour
         resumeButton.SetActive(true);
         pauseButton.SetActive(false);
         Debug.Log("Pause Clicked");
+    }
+    public void Journaling()
+    {
+        GameManager.instance.Journaling();
+        if (isJournalActive)
+        {
+            journalCanvas.SetActive(false);
+            isJournalActive = false;
+        }
+        else{
+            journalCanvas.SetActive(true);
+            isJournalActive = true;
+        }
+
     }
 }
