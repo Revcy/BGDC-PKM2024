@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using System.Runtime.CompilerServices;
 public enum GameState { MainMenu, Playing, Dead, Paused, Loading, PopupOpen }
 
 public class GameManager : MonoBehaviour
@@ -15,9 +16,11 @@ public class GameManager : MonoBehaviour
     public bool isJournaling = false;
     public GameObject LoseScreen;
     public static event Action OnBackToMenu;
+    [SerializeField] private SoundManager soundManager;
 
     private void Awake()
     {
+        InitializeSound();
         if (instance != null && instance != this)
         {
             Destroy(gameObject);
@@ -91,7 +94,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 0;
         currentState = GameState.Dead;
         Debug.Log("Player ran out of time");
-        //SoundManager.instance.PlaySoundEffect(SFXindex);
+        soundManager.PlayWinSound(soundManager.loseSFX);
         LoseScreen.SetActive(true);
     }
 
@@ -99,6 +102,11 @@ public class GameManager : MonoBehaviour
     public void RemoveAllPlayerPrefs()
     {
         PlayerPrefs.DeleteAll();
+    }
+
+    public void InitializeSound()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
     }
 }
 

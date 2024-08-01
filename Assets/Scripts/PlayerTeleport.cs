@@ -24,7 +24,9 @@ public class PlayerTeleport : MonoBehaviour
         {
             if (isWin == true)
             {
+                soundManager.PlayWinSound(soundManager.winSFX);
                 WinCanvas.SetActive(true);
+
             }
             if (currentTeleporter != null)
             {

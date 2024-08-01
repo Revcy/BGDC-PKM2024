@@ -33,6 +33,12 @@ public class SoundManager : MonoBehaviour
         sfxSource.PlayOneShot(clip);
     }
 
+    public void PlayWinSound(AudioClip clip)
+    {
+        bgmSource.Stop();
+        sfxSource.PlayOneShot(clip);
+    }
+
     public void PlaySFXLoop(AudioClip clip)
     {
         if (sfxSource.clip != clip)

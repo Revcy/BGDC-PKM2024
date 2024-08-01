@@ -1229,6 +1229,7 @@ MonoBehaviour:
   backToMenuDelay: 0
   isJournaling: 0
   LoseScreen: {fileID: 1956769008}
+  soundManager: {fileID: 0}
 --- !u!4 &706694824
 Transform:
   m_ObjectHideFlags: 0
@@ -2540,12 +2541,12 @@ MonoBehaviour:
   sfxSource: {fileID: 619249787}
   doorOpen: {fileID: 8300000, guid: 148ba2a12e558694496260f54d61ac00, type: 3}
   buttonClick: {fileID: 8300000, guid: 849c88fadf140d6498833f655e59c006, type: 3}
-  extinguishShoot: {fileID: 8300000, guid: 3f1181e586d2c71488833ef1b8b98831, type: 3}
+  extinguishShoot: {fileID: 8300000, guid: 33fdeb35add08364fa45a3dffbf84683, type: 3}
   extinguishedFire: {fileID: 8300000, guid: 12490454cb5282b44a77a133a0494e73, type: 3}
-  fireSound: {fileID: 8300000, guid: b4f048645e7e6444cbd2fbc0ceb7b9f6, type: 3}
-  movementSound: {fileID: 8300000, guid: 80863bc434f75ba4489356b831218d5a, type: 3}
+  fireSound: {fileID: 8300000, guid: 1cba41c3ef5bb854d9459caae9d59aee, type: 3}
+  movementSound: {fileID: 8300000, guid: 8801497ece8e0bc49bf63bcc4ab9a51a, type: 3}
   bgMusic: {fileID: 8300000, guid: 2163a73e9e17303489043f9f8d240f39, type: 3}
-  winSFX: {fileID: 0}
+  winSFX: {fileID: 8300000, guid: 73f9bd35be54c1241a5357471e46b9cc, type: 3}
   loseSFX: {fileID: 8300000, guid: ceda4bad715024b49aba046a2228a429, type: 3}
 --- !u!4 &1390699546
 Transform:
