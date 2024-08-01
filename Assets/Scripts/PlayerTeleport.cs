@@ -7,6 +7,13 @@ public class PlayerTeleport : MonoBehaviour
     private GameObject currentTeleporter;
     public GameObject WinCanvas;
     private bool isWin = false;
+    public SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
+
     private void Start()
     {
         WinCanvas = DontDestroyWin.instance.gameObject;
@@ -21,6 +28,7 @@ public class PlayerTeleport : MonoBehaviour
             }
             if (currentTeleporter != null)
             {
+                soundManager.PlaySFX(soundManager.doorOpen);
                 transform.position = currentTeleporter.GetComponent<RoomDoor>().GetDestination().position;
             }
         }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1721232900192301363}
   - component: {fileID: -6508413952319193650}
   - component: {fileID: 6615580000163249079}
+  - component: {fileID: -742382809717518827}
   m_Layer: 0
   m_Name: Foam
   m_TagString: Extinguisher
@@ -167,3 +168,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-742382809717518827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8767397514230895461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a42575c7e024044a8919e1442b34863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}

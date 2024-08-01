@@ -11,6 +11,12 @@ public class FireClass : MonoBehaviour
 
     // Reference to the original (unburned) prefab
     public GameObject originalPrefab;
+    private SoundManager soundManager;
+
+    private void Awake()
+    {
+        soundManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<SoundManager>();
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -43,6 +49,7 @@ public class FireClass : MonoBehaviour
 
             Debug.Log("Instantiated originalPrefab at: " + position);
             Debug.Log("Scale of newPrefab: " + newPrefab.transform.localScale);
+            soundManager.PlaySFX(soundManager.extinguishedFire);
         }
     }
 }

@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour
     public float knockbackDuration;
     public float knockbackTotalTime;
     private bool isKnockBack = false;
-    private bool isShooting = false;
+    public bool isShooting = false;
     private bool grounded = false;
     [SerializeField] private float jumpForce = 6f;
     private bool hasExtinguisher = false;
@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     private GameObject carriedExtinguisher = null;
     private enum MovementState { idle, walking, jumping, knockback, spraying }
     public GameObject FoamUI, CO2UI, DryChemUI, WaterUI, WetChemUI, DryPowUI;
-    public SoundManager soundManager;
+    private SoundManager soundManager;
+    public bool isShootingCO2, isShootingDryChem, isShootingDryPow, isShootingFoam, isShootingWetChem;
 
     private void Awake()
     {
@@ -179,11 +180,51 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             isShooting = true;
+            if(carriedExtinguisher.name == "Foam")
+            {
+                isShootingFoam = true;
+            }
+            else if(carriedExtinguisher.name == "CO2")
+            {
+                isShootingCO2 = true;
+            }
+            else if(carriedExtinguisher.name == "DryChem")
+            {
+                isShootingDryChem = true;
+            }
+            else if(carriedExtinguisher.name == "WetChem")
+            {
+                isShootingWetChem = true;
+            }
+            else if(carriedExtinguisher.name == "DryPow")
+            {
+                isShootingDryPow = true;
+            }
             StartShooting();
         }
         if (Input.GetMouseButtonUp(0))
         {
             isShooting = false;
+            if(carriedExtinguisher.name == "Foam")
+            {
+                isShootingFoam = false;
+            }
+            else if(carriedExtinguisher.name == "CO2")
+            {
+                isShootingCO2 = false;
+            }
+            else if(carriedExtinguisher.name == "DryChem")
+            {
+                isShootingDryChem = false;
+            }
+            else if(carriedExtinguisher.name == "WetChem")
+            {
+                isShootingWetChem = false;
+            }
+            else if(carriedExtinguisher.name == "DryPow")
+            {
+                isShootingDryPow = false;
+            }
             StopShooting();
         }
 
@@ -216,6 +257,7 @@ public class PlayerMovement : MonoBehaviour
         if (sprayCoroutine == null && carriedExtinguisher != null && (grounded == true || IsPlatform() == true))
         {
             sprayCoroutine = StartCoroutine(Shoot());
+            soundManager.PlaySFXLoop(soundManager.extinguishShoot);
         }
     }
 
@@ -232,6 +274,7 @@ public class PlayerMovement : MonoBehaviour
                 Destroy(currentSpray);
                 currentSpray = null;
             }
+            soundManager.StopSFXLoop();
         }
     }
 

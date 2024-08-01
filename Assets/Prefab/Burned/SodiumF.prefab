@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5739187547710088141}
   - component: {fileID: 3195940036787912313}
   - component: {fileID: 13478754149701295}
+  - component: {fileID: -5313625370108252854}
   m_Layer: 0
   m_Name: SodiumF
   m_TagString: FireD
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -2.2678726, y: -1.7660447, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 7230969956578491441}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5739187547710088141
@@ -147,3 +149,49 @@ MonoBehaviour:
   hp: 100
   playerMovement: {fileID: 0}
   originalPrefab: {fileID: 6801421772007844029, guid: 34b37cf812a5ff2419c31d0807acc6e5, type: 3}
+--- !u!114 &-5313625370108252854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5435098722418256497}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc8da35cee0de940a5e9a4d4c69b552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {fileID: 7230969956578491441}
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
+--- !u!1 &7514535750643549239
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7230969956578491441}
+  m_Layer: 0
+  m_Name: FAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7230969956578491441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7514535750643549239}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -4.3749437, y: 0.6179067, z: 0.12106544}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4288143286304156322}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

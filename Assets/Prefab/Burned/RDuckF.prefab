@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5148293573452298661}
   - component: {fileID: 7361632112781124156}
   - component: {fileID: 5894964402591780506}
+  - component: {fileID: 3029702804516137996}
   m_Layer: 0
   m_Name: RDuckF
   m_TagString: FireA
@@ -31,7 +32,8 @@ Transform:
   m_LocalPosition: {x: -12.07, y: -0.97, z: 0.12106544}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 6238852673129578268}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5148293573452298661
@@ -147,3 +149,49 @@ MonoBehaviour:
   hp: 100
   playerMovement: {fileID: 0}
   originalPrefab: {fileID: 3601193920326681352, guid: a72a7830331049248899e1712eb627eb, type: 3}
+--- !u!114 &3029702804516137996
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5189923706669970605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcc8da35cee0de940a5e9a4d4c69b552, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  center: {fileID: 6238852673129578268}
+  maxVolumeDistance: 5
+  minVolumeDistance: 20
+--- !u!1 &5234864351368582331
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6238852673129578268}
+  m_Layer: 0
+  m_Name: FAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6238852673129578268
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5234864351368582331}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 5.427183, y: -0.17813802, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 22940196602265774}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

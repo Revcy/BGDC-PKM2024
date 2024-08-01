@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8289129067204976384}
   - component: {fileID: 8123385742470599963}
   - component: {fileID: -3047887453404377027}
+  - component: {fileID: -1174646751839112420}
   m_Layer: 0
   m_Name: WetChem
   m_TagString: Extinguisher
@@ -167,3 +168,16 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-1174646751839112420
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9109035979060087265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5a42575c7e024044a8919e1442b34863, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerMovement: {fileID: 0}

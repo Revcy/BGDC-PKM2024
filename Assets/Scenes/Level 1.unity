@@ -1646,6 +1646,10 @@ PrefabInstance:
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 1843458711}
+    - target: {fileID: 5617608573326382243, guid: 92f98bd2b8d0f0e468637e13b44df9ef, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.52
+      objectReference: {fileID: 0}
     - target: {fileID: 6277321064242375124, guid: 92f98bd2b8d0f0e468637e13b44df9ef, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.25
@@ -4587,6 +4591,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 465898099}
     m_Modifications:
+    - target: {fileID: 1977224354170835520, guid: 161045a54b4d42d41890ba09dae5a78a, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1843458711}
     - target: {fileID: 2570793068907967153, guid: 161045a54b4d42d41890ba09dae5a78a, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.181227
@@ -4643,7 +4651,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: CO2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4277369252800708452, guid: 161045a54b4d42d41890ba09dae5a78a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -11937,6 +11946,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1438305908}
     m_Modifications:
+    - target: {fileID: -1174646751839112420, guid: 131def5b926738044a09af7082a0e37b, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1843458711}
     - target: {fileID: 7219832227907610119, guid: 131def5b926738044a09af7082a0e37b, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.181227
@@ -11993,7 +12006,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: WetChem
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -9078681963737823541, guid: 131def5b926738044a09af7082a0e37b, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -13101,6 +13115,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1401436456}
     m_Modifications:
+    - target: {fileID: -742382809717518827, guid: 2cf8561f246c6e94ab26bd00078f50c5, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1843458711}
     - target: {fileID: 8292348558243586378, guid: 2cf8561f246c6e94ab26bd00078f50c5, type: 3}
       propertyPath: m_LocalScale.x
       value: 0.18122704
@@ -13157,7 +13175,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Foam
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -6730788289505493314, guid: 2cf8561f246c6e94ab26bd00078f50c5, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -22945,6 +22964,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 881993807}
     m_Modifications:
+    - target: {fileID: 1267945607773333279, guid: 00a2e6cf8e264e547a3dc153f2f9ed50, type: 3}
+      propertyPath: playerMovement
+      value: 
+      objectReference: {fileID: 1843458711}
     - target: {fileID: 4382629121757146122, guid: 00a2e6cf8e264e547a3dc153f2f9ed50, type: 3}
       propertyPath: m_Name
       value: DryPow
@@ -23001,7 +23024,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2779363497944961127, guid: 00a2e6cf8e264e547a3dc153f2f9ed50, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
